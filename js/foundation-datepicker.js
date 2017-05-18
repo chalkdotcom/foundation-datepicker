@@ -27,7 +27,7 @@
         this.isRTL = dates[this.language].rtl || false;
         this.format = DPGlobal.parseFormat(options.format || this.element.data('date-format') || dates[this.language].format || 'mm/dd/yyyy');
         this.formatText = options.format || this.element.data('date-format') || dates[this.language].format || 'mm/dd/yyyy';
-        this.isInline = false;
+        this.isInline = this.element.is('div');
         this.isInput = this.element.is('input');
         this.component = this.element.is('.date') ? this.element.find('.prefix, .postfix') : false;
         this.hasInput = this.component && this.element.find('input').length;
@@ -222,8 +222,6 @@
                         click: $.proxy(this.show, this)
                     }]
                 ];
-            } else if (this.element.is('div')) { // inline datepicker
-                this.isInline = true;
             } else {
                 this._events = [
                     [this.element, {
